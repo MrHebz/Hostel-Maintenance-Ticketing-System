@@ -9,7 +9,7 @@ Version: 1.0
 
 ## 1. Product Overview
 - **What is the product?:** A centralized backend ticketing web application designed for campus hostels to log, track, assign, and resolve student maintenance complaints (such as electrical faults, plumbing leaks, and broken bed frames).
-- **Core Purpose:** To replace informal paper logbooks and scattered verbal or WhatsApp chats with an accountable, transparent, and structured digital pipeline.
+- **Core Purpose:** To replace informal paper logbooks and scattered verbal or WhatsApp chats with an accountable and structured digital pipeline.
 
 ---
 
@@ -20,8 +20,8 @@ Version: 1.0
 
 ## 3. Business Objectives
 - **What does the business want?:** 
-  - Eliminate lost maintenance requests and miscommunications across campus hostels.
-  - Improve operational accountability and reduce average repair resolution time for university facilities.
+  - Eliminate lost maintenance requests and miscommunications in campus hostels.
+  - Improve operational accountability and reduce average repair resolution time for university Dorms.
   - Provide real-time operational data and metrics on maintenance backlogs for hall management.
 
 ---
@@ -36,7 +36,7 @@ Version: 1.0
 
 ## 5. Stakeholders
 - **Who is involved or affected?:**
-  - Hostel Management & Student Senators 
+  - Hostel Management and Student Senators 
   - Dorm Residents
  
 
