@@ -3,7 +3,7 @@
 Project Title: Hostel Facility & Maintenance Ticketing System  
 Course: BU-COS 209  
 Group: 9 [Navy Croc]  
-Version: 1.0
+Version: 1.1
 
 ---
 
