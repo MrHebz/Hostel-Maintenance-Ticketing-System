@@ -52,7 +52,7 @@ Version: 1.0
 
 ## 7. Functional Requirements
 - **What must the system do?:**
-  - **User Authentication & Role Management:** Secure login distinguishing between **Student**, **Porter_Senator**, and **Technician** roles.
+  - **User Authentication & Role Management:** Secure login distinguishing between **Student**, **Porter/Senator**, and **Technician** roles.
   - **Ticket Logging & Management:** Allow students to create tickets specifying room number, category (**Electrical**, **Plumbing**, **Carpentry**, **Other**), description, and urgency (**Normal** or **Urgent**).
   - **Duplicate Prevention Engine:** Automatically check if an open ticket already exists for the same room and category to block redundant submissions.
   - **Pipeline State Machine:** Enforce sequential stage transitions (**Pending** -> **Assigned** -> **Fixed** -> **Closed**) without skipping states.
