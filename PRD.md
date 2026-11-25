@@ -77,9 +77,9 @@ Version: 1.0
 
 ## 10. Acceptance Criteria
 - **How do we verify features?:**
-  - *Duplicate Check:* Submitting a second identical ticket for an active room and category returns a validation error and directs the user to the existing ticket.
-  - *Pipeline Flow:* A technician cannot transition a ticket status to **Fixed** until a **Porter_Senator** has successfully moved it to **Assigned**.
-  - *Auto-Close:* A ticket sitting in the **Fixed** stage for over 48 hours without student confirmation automatically switches status to **Closed**.
+  - **Duplicate Check:** Submitting a second identical ticket for an active room and category returns a validation error and directs the user to the existing ticket.
+  - **Pipeline Flow:** A technician cannot transition a ticket status to **Fixed** until a **Porter/Senator** has successfully moved it to **Assigned**.
+  - **Auto-Close:** A ticket sitting in the **Fixed** stage for over 48 hours without student confirmation automatically switches status to **Closed**.
 
 ---
 
