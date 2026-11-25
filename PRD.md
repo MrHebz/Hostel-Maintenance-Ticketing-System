@@ -7,88 +7,82 @@ Version: 1.0
 
 ---
 
-## 1. Problem Statement & Overview
-
-### 1.1 The Problem
-Maintenance issues in campus hostels (faulty ceiling fans, leaking pipes, shocking sockets, broken door locks) are currently reported verbally to hall porters or hall senators, or written in physical logbooks at the desk. This causes:
-- **Lost Requests:** Verbal complaints get forgotten during shift changes or busy periods.
-- **No Tracking:** Students have no idea if their issue has been logged or when a technician will arrive.
-- **Duplicate Complaints:** Roommates often report the same fault separately to different porters or senators.
-
-### 1.2 Who Has This Problem
-- **Students:** Live with broken facilities for days and waste time following up at the lodge.
-- **Porters & Hall Senators:** Handle day to day hall welfare and operations, struggling to keep track of scattered verbal/WhatsApp complaints across hundreds of rooms.
-- **Maintenance Technicians:** Lack a clear, prioritized task list with accurate room details.
+## 1. Product Overview
+- **What is the product?:** A centralized backend ticketing web application designed for campus hostels to log, track, assign, and resolve student maintenance complaints (such as electrical faults, plumbing leaks, and broken bed frames).
+- **Core Purpose:** To replace informal paper logbooks and scattered verbal or WhatsApp chats with an accountable, transparent, and structured digital pipeline.
 
 ---
 
-## 2. Surveys and Interviews
-
-### 2.1 Survey Statistics
-- **Total People Interviewed:** 16 students
-- **Average Wait Time for Repairs:** 14.5 days (ranging from 2 days for resolved plumbing to 4 weeks for unresolved electrical issues)
-- **Percentage of Unresolved/Delayed Issues:** 50% (8 out of 16 students still waiting after 3 to 4 weeks)
-
-### 2.2 Interview Notes
-- **Student 1:** Stated that the plumber came 2 days after he complained and was impressed with the speed of repairs.
-- **Student 2:** Stated that no action has been taken since he complained about the electrical issues in his room.
-- **Porter / Hall Senator:** A porter stated that with the large volume of complaints across the hostel, getting repairs completed takes time.
-
-### 2.3 Why Current Solutions Fall Short
-- **Paper Logbooks at the Lodge:** Can get misplaced, hard to search, and give zero feedback to students.
-- **Verbal / WhatsApp Reports to Senators:** Informal messages get buried under other hall announcements and lack accountability.
+## 2. Problem Statement
+- **What problem are we solving?:** Maintenance issues in campus hostels suffer from severe tracking failures. Students face long unacknowledged delays (averaging 14.5 days based on 16 student interviews, with 50% of issues left unresolved for weeks, particularly electrical faults). Verbal reporting leads to lost requests during shift changes, lack of student visibility, and duplicate complaints for the same room.
 
 ---
 
-## 3. Proposed Solution & MVP Scope
-
-A simple backend ticketing system that tracks every hostel maintenance request from the moment a student reports it until a technician fixes it and the student confirms it is done.
-
-### Core Features
-1. **Simple Ticket Creation:** Students log a complaint for their room by picking a category (**Electrical**, **Plumbing**, **Carpentry**, **Other**), adding a short description, and setting urgency (**Normal** or **Urgent**).
-2. **Duplicate Prevention:** If an open ticket already exists for the same room and issue category, the system blocks duplicate entries and shows the existing ticket's progress instead.
-3. **Clear 4-Step Pipeline:** Every ticket moves through four simple stages:
-  - **1. Pending:** Student has submitted the complaint.
-  - **2. Assigned:** A Porter or Hall Senator has verified the issue and assigned it to a technician.
-  - **3. Fixed:** The technician has completed the repair.
-  - **4. Closed:** The student confirms the repair works properly.
+## 3. Business Objectives
+- **What does the business want?:** 
+  - Eliminate lost maintenance requests and miscommunications across campus hostels.
+  - Improve operational accountability and reduce average repair resolution time for university facilities.
+  - Provide real-time operational data and metrics on maintenance backlogs for hall management.
 
 ---
 
-## 4. User Roles & What They Can Do
-
-Instead of complex permission tables, the system has three straightforward roles:
-
-- **Student:**
-  - Can submit a new maintenance ticket for their own room.
-  - Can view the current stage of their room's tickets.
-  - Can mark a **Fixed** ticket as **Closed** once they verify the work is done.
-
-- **Porter / Hall Senator:**
-  - Can see all tickets submitted across their assigned hostel.
-  - Can verify complaints and assign them to the right technician.
-  - Can flag urgent issues or close tickets if a student forgets to confirm after 48 hours.
-
-- **Maintenance Technician:**
-  - Can only view tickets assigned directly to them.
-  - Can update a ticket's stage from **Assigned** to **Fixed** once the repair is completed.
+## 4. Target Users
+- **Who will use the product?:**
+  - **Students:** Room occupants who log tickets and verify completed repairs.
+  - **Porters & Hall Senators:** Hall welfare managers who verify incoming complaints, prevent duplicates, and assign tasks to technicians.
+  - **Maintenance Technicians:** Works & Physical Planning staff who receive tasks and execute physical repairs.
 
 ---
 
-## 5. Backend Logic & Data Design (Language-Agnostic)
-
-### 5.1 What Data It Store
-- **Users:** ID, Matric/Staff Number, Full Name, Role (**Student**, **Porter_Senator**, **Technician**), Hostel, Room Number
-- **Tickets:** Ticket ID, Student ID, Hostel, Room Number, Category, Urgency, Description, Stage (**Pending**, **Assigned**, **Fixed**, **Closed**), Assigned Technician ID, Date Created
-- **History Logs:** Log ID, Ticket ID, Updated By, Previous Stage, New Stage, Timestamp
-
-### 5.2 Key Rules the Backend Enforces
-- **No Skipping Stages:** A ticket must follow the order (**Pending** -> **Assigned** -> **Fixed** -> **Closed**). A technician cannot mark a ticket **Fixed** before a Porter or Senator assigns it.
-- **No Double-Assignment:** If a Porter and a Hall Senator try to assign the same ticket at the exact same second, the system accepts the first one and notifies the second person that it is already assigned.
-- **Auto-Close Timer:** If a student doesn't confirm a **Fixed** ticket within 48 hours, the system automatically moves it to **Closed**.
+## 5. Stakeholders
+- **Who is involved or affected?:**
+  - Hostel Management & Student Senators 
+  - Dorm Residents
+ 
 
 ---
 
-## 6. Benefits
-- Faster assignment of reported issues compared to paper logbooks.
-- Zero lost maintenance requests across hostel shift changes.
+## 6. User Stories
+- **What do users want to accomplish?:**
+  - **Student 1:**I would like to be able to file complains and see the process of it being attended to instead of being told to wait all the time.
+  - **Student 2:** I want to be able to visibly see when a technician is coming to hae peace of mind over the faulty things in my room. 
+  - **Porter / Hall Senator:** A porter stated that with the large volume of complaints across the hostel, getting repairs completed takes time and wants to combat this with a better system.
+  
+---
+
+## 7. Functional Requirements
+- **What must the system do?:**
+  - **User Authentication & Role Management:** Secure login distinguishing between **Student**, **Porter_Senator**, and **Technician** roles.
+  - **Ticket Logging & Management:** Allow students to create tickets specifying room number, category (**Electrical**, **Plumbing**, **Carpentry**, **Other**), description, and urgency (**Normal** or **Urgent**).
+  - **Duplicate Prevention Engine:** Automatically check if an open ticket already exists for the same room and category to block redundant submissions.
+  - **Pipeline State Machine:** Enforce sequential stage transitions (**Pending** -> **Assigned** -> **Fixed** -> **Closed**) without skipping states.
+  - **Automated Auto-Close Timer:** Move a **Fixed** ticket automatically to **Closed** if the student fails to confirm within 48 hours.
+
+---
+
+## 8. Non-Functional Requirements
+- **How well must it operate?:**
+  - **Reliability:** Backend data integrity must ensure zero race conditions or double-assignments when multiple porters attempt to assign overlapping tickets.
+  - **Usability:** Simple, responsive interface optimized for quick mobile and desktop access across campus.
+  - **Security:** Role-based access control preventing students from accessing administrative assignment features or viewing other rooms' private tickets.
+
+---
+
+## 9. Scope and Priorities
+- **What is included in the MVP?:**
+  - **In-Scope (MVP):** User roles, single-room ticket creation, duplicate blocking, 4-step pipeline tracking (**Pending**, **Assigned**, **Fixed**, **Closed**), manual assignment by porters/senators, and 48-hour auto-close.
+  - **Out-of-Scope (Future Releases):** Push notifications via SMS/email, automated technician performance analytics dashboards, and multi-campus hostel scaling.
+
+---
+
+## 10. Acceptance Criteria
+- **How do we verify features?:**
+  - *Duplicate Check:* Submitting a second identical ticket for an active room and category returns a validation error and directs the user to the existing ticket.
+  - *Pipeline Flow:* A technician cannot transition a ticket status to **Fixed** until a **Porter_Senator** has successfully moved it to **Assigned**.
+  - *Auto-Close:* A ticket sitting in the **Fixed** stage for over 48 hours without student confirmation automatically switches status to **Closed**.
+
+---
+
+## 11. Assumptions and Open Questions
+- **What remains unconfirmed?:**
+  - **Assumptions:** Students have stable internet/network access on campus to log and check ticket statuses
